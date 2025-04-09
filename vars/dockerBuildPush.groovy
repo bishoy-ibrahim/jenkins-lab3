@@ -4,7 +4,7 @@ def call(String imageName, String dockerHubCredId) {
     }
 
     stage('Push Docker Image') {
-        withCredentials([usernamePassword(credentialsId: dockerhub-login, usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+        withCredentials([usernamePassword(credentialsId: dockerHubCredId, usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
             sh """
                 echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
                 docker push ${imageName}
