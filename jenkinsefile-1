@@ -1,1 +1,18 @@
+pipeline {
+  agent any
 
+  stages {
+    stage('Clone Repo') {
+      steps {
+        git 'https://github.com/bishoy-ibrahim/jenkins-lab3.git'
+      }
+    }
+
+    stage('Run Setup Script') {
+      steps {
+        sh 'chmod +x setup-webserver.sh'
+        sh './setup-webserver.sh'
+      }
+    }
+  }
+}
